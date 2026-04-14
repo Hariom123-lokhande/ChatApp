@@ -124,12 +124,10 @@ namespace ChatApp.API.Controllers
             );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-            // 🍪 SET SECURE HTTP-ONLY COOKIE (Simplified for local testing)
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
-                Secure = false, // Set to false for local HTTP testing
+                Secure = false, 
                 SameSite = SameSiteMode.Lax, 
                 Expires = DateTime.UtcNow.AddMinutes(durationMinutes),
                 Path = "/"
@@ -147,7 +145,7 @@ namespace ChatApp.API.Controllers
 
             return Ok(new LoginResponse
             {
-                Token = tokenString, // Keeping for compatibility, but frontend should prefer cookie
+                Token = tokenString,
                 UserId = user.UserId,
                 Username = user.Username,
                 Email = user.Email,

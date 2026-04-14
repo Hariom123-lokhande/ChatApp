@@ -10,8 +10,9 @@ export function switchTab(tab) {
     cls('register-form', 'active', tab === 'register');
     cls('auth-msg', 'hidden', true);
 }
+export function showAuthMsg(text, type)
 
-export function showAuthMsg(text, type) {
+{
     const msgEl = el('auth-msg');
     msgEl.className = `msg ${type}`;
     msgEl.textContent = text;

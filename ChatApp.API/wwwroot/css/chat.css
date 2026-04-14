@@ -692,43 +692,136 @@ body.light-mode ::-webkit-scrollbar-thumb:hover {
 }
 
 /* RESPONSIVE */
+.mobile-only {
+    display: none !important;
+}
+
 @media (max-width: 1200px) {
     .details-panel {
         display: none !important;
     }
+    .sidebar {
+        width: 300px;
+    }
 }
 
 @media (max-width: 992px) {
+    /* Tablet */
+    .activity-bar {
+        width: 65px;
+        padding: 20px 0;
+    }
+    .activity-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
     .sidebar {
-        width: 80px;
+        width: 280px;
     }
-
-    .sidebar h2,
-    .sidebar .search-box,
-    .sidebar .stab,
-    .sidebar .item-info {
-        display: none;
-    }
-
-    .sidebar-header {
-        justify-content: center;
+    .chat-header {
+        padding: 20px 24px;
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+    /* Mobile Overlay Style */
+    .mobile-only {
+        display: flex !important;
+    }
+    
     .activity-bar {
         display: none;
     }
-
+    
     #chat-screen {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
     }
 
     .sidebar {
         width: 100%;
-        height: 50%;
+        height: 100%;
+        flex-shrink: 0;
         border-right: none;
-        border-bottom: 1px solid var(--border);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .chat-main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10;
+        background: var(--bg-main);
+    }
+    
+    body.mobile-chat-open .sidebar {
+        transform: translateX(-30%);
+    }
+
+    body.mobile-chat-open .chat-main {
+        transform: translateX(0);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .input-area {
+        padding: 8px 12px;
+    }
+    
+    .input-card {
+        padding: 6px 8px;
+        gap: 6px;
+    }
+    
+    .action-icon {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .chat-header {
+        padding: 12px 16px;
+    }
+    
+    .chat-header h3 {
+        font-size: 16px;
+    }
+    
+    .messages-area {
+        padding: 12px;
+    }
+    
+    .bubble {
+        max-width: 90%;
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+    
+    .item-name {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .input-card {
+        padding: 4px;
+        border-radius: 16px;
+    }
+    .input-card textarea {
+        font-size: 14px;
+        padding: 8px 4px;
+    }
+    .sidebar-header h2 {
+        font-size: 20px;
     }
 }
 

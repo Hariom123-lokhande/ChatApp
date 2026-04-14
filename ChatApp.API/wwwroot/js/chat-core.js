@@ -97,6 +97,7 @@ export async function deleteGroup(groupId) {
             cls('active-chat', 'hidden', true);
             cls('no-chat', 'hidden', false);
             state.currentChat = { id: null, type: null, name: null };
+            document.body.classList.remove('mobile-chat-open');
         }
         delete state.unread.group[norm(groupId)];
         await loadGroups();
@@ -112,6 +113,9 @@ export function setupChat(id, type, name, statusStr) {
     el('details-status').textContent = statusStr;
     cls('add-member-btn', 'hidden', type !== 'group');
     el('msg-input').focus();
+    
+    // Switch for mobile overlay
+    document.body.classList.add('mobile-chat-open');
 
     // Update Details Panel Header
     el('details-avatar').textContent = name.substring(0, 2).toUpperCase();
